@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外幣記帳與即時匯率預算控管助手</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>外幣記帳與即時匯率預算控管助手</h1>
+    <p>快速記帳、即時匯率換算、分類花費分析。</p>
+  </header>
+
+  <main>
+    <section class="grid-panel">
+      <article class="card form-card">
+        <h2>新增消費記錄</h2>
+        <form id="expense-form">
+          <label>
+            日期
+            <input id="expense-date" type="date" required>
+          </label>
+          <label>
+            消費項目
+            <input id="item-name" type="text" placeholder="例如：晚餐、捷運" required>
+          </label>
+          <label>
+            外幣金額
+            <input id="foreign-amount" type="number" min="0" step="0.01" placeholder="1000" required>
+          </label>
+          <label>
+            幣別
+            <select id="currency-select" required>
+              <option value="JPY">日圓 (JPY)</option>
+              <option value="USD">美元 (USD)</option>
+              <option value="EUR">歐元 (EUR)</option>
+              <option value="CNY">人民幣 (CNY)</option>
+            </select>
+          </label>
+          <label>
+            分類
+            <select id="category-select" required>
+              <option value="美食">美食</option>
+              <option value="交通">交通</option>
+              <option value="住宿">住宿</option>
+              <option value="其他">其他</option>
+            </select>
+          </label>
+          <div class="conversion-summary">
+            <p>折合台幣：約 <span id="converted-nt">0</span> 元</p>
+            <p id="rate-text">匯率：-</p>
+          </div>
+          <div class="status-message">
+            <p id="status-text">GAS 儲存狀態會顯示於此。</p>
+          </div>
+          <button type="submit">送出記帳</button>
+        </form>
+      </article>
+
+      <article class="card stats-card">
+        <h2>即時儀表板</h2>
+        <div class="stat">
+          <span>總花費（台幣）</span>
+          <strong id="total-nt">0</strong>
+        </div>
+        <div class="chart-container">
+          <canvas id="category-chart"></canvas>
+        </div>
+      </article>
+    </section>
+
+    <section class="table-panel card">
+      <h2>記帳紀錄</h2>
+      
+      <div class="filter-panel">
+        <label>
+          篩選日期
+          <input id="filter-date" type="date">
+        </label>
+        <button id="clear-filter-btn" type="button" class="secondary-btn">顯示全部</button>
+      </div>
+
+      <div id="daily-summary">
+        <div class="daily-stats">
+          <div class="stat-item">
+            <span>篩選日期支出</span>
+            <strong id="filtered-total">0 元</strong>
+          </div>
+          <div class="stat-item">
+            <span>筆數</span>
+            <strong id="filtered-count">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>消費項目</th>
+            <th>外幣金額</th>
+            <th>幣別</th>
+            <th>分類</th>
+            <th>台幣折合</th>
+          </tr>
+        </thead>
+        <tbody id="entry-table-body">
+          <tr><td colspan="6" class="empty">尚無記錄，請新增消費項目</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>此範例展示前端匯率換算、資料呈現與 GAS POST 送出。</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

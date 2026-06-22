@@ -1,0 +1,270 @@
+:root {
+  --bg: #f7f8fc;
+  --surface: #ffffff;
+  --primary: #1f3a8a;
+  --accent: #f97316;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+  background: radial-gradient(circle at top, #eef2ff 0%, #f7f8fc 45%);
+  color: var(--text);
+}
+
+header, footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+header h1 {
+  margin: 0 0 .4rem;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  color: var(--primary);
+}
+
+header p, footer p {
+  margin: 0;
+  color: var(--muted);
+}
+
+main {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto 2rem;
+}
+
+.grid-panel {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+}
+
+.form-card h2,
+.stats-card h2,
+.table-panel h2 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+label {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+label input,
+label select {
+  width: 100%;
+  margin-top: .4rem;
+  padding: .85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 14px;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  background: #ea580c;
+}
+
+.conversion-summary {
+  display: grid;
+  gap: .5rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.conversion-summary p {
+  margin: 0;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.conversion-summary span {
+  color: var(--accent);
+}
+
+.status-message {
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  background: #eef5ff;
+  border: 1px solid #dbeafe;
+}
+
+.status-message p {
+  margin: 0;
+  color: #1d4ed8;
+  font-size: 0.95rem;
+}
+
+
+.stats-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 1.2rem;
+  background: #eef2ff;
+  border-radius: 16px;
+}
+
+.stat strong {
+  font-size: 2rem;
+  color: var(--primary);
+}
+
+.chart-container {
+  min-height: 320px;
+}
+
+.table-panel table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-panel th,
+.table-panel td {
+  padding: .9rem .8rem;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.table-panel th {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+}
+
+.filter-panel {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.filter-panel label {
+  margin-bottom: 0;
+}
+
+.filter-panel input {
+  margin-top: 0.4rem;
+}
+
+.secondary-btn {
+  width: auto;
+  padding: 0.85rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  font-size: 0.95rem;
+  align-self: flex-end;
+}
+
+.secondary-btn:hover {
+  background: #1e40af;
+}
+
+.daily-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  background: #f0fdf4;
+  border-radius: 16px;
+  border: 1px solid #dcfce7;
+}
+
+.stat-item span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.stat-item strong {
+  font-size: 1.5rem;
+  color: #10b981;
+  margin-left: 0.5rem;
+}
+
+#daily-summary {
+  display: none;
+}
+
+#daily-summary.active {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .conversion-summary,
+  .stat {
+    text-align: center;
+    display: block;
+  }
+  .stat strong {
+    display: block;
+    margin-top: .5rem;
+  }
+  
+  .filter-panel {
+    grid-template-columns: 1fr;
+  }
+  
+  .secondary-btn {
+    width: 100%;
+  }
+  
+  .daily-stats {
+    grid-template-columns: 1fr;
+  }
+}
